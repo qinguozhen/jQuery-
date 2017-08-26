@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+<style>
+.amin{width:100%; height:100%; background:rgba(0,0,0,0.5); position:absolute; top:0px; left:0px;}
+.msg{width:300px; padding:10px; background:#e9edfe; position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); transition:all 5s; animation:alert 1s; box-shadow:0px 0px 50px #99F; border:1px solid #162d9e;}
+.msg p{border-bottom:#162d9e 1px solid; padding-bottom:10px;}
+.btn-msg{padding-top:30px; text-align:right;}
+.yes,.no{border:1px solid #162d9e; padding:0px 10px; display:inline-block; cursor:default;}
+.yes{margin-right:20px;}
+@keyframes alert{
+0%{transform:rotate(180deg); position:absolute; left:0px;}
+100%{}
+}
+</style>
+<script>
+	$(function(){
+		initAlert("今天你很美喔！");
+	});
+	window.initAlert = function(msg){
+		var html = '<div class="amin">\
+			<div class="msg">\
+				<p>信息提示</p>\
+				<div class="msg-content">\
+					'+msg+'\
+				</div>\
+				<div class="btn-msg">\
+					<span class="yes">确定</span>\
+					<span class="no">取消</span>\
+				</div>\
+			</div>\
+		</div>\
+		';
+		$("body").append(html);
+		$("body").css("overflow", "hidden");
+		$(".yes").click(function(){
+			$(".amin").fadeOut(500);
+			$("body").css("overflow", "inherit");	
+		});
+		$(".no").click(function(){
+			$(".amin").fadeOut(500);	
+			$("body").css("overflow", "inherit");	
+		});
+	}
+</script>
+<script type="text/javascript" src="js/untitled.js"></script>
+<body>
+
+</body>
+</html>
