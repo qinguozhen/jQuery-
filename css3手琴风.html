@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>css3手琴风</title>
+</head>
+<style>
+body {
+  background: #333;
+  color: #fff;
+}
+ul li{
+	list-style-type:none;
+}
+h1 {
+  text-align: center;
+}
+.half {
+  float: left;
+  width: 50%;
+  padding: 0 1em;
+}
+/* Acordeon styles */
+.tab {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  overflow: hidden;
+}
+.tab:hover{
+	box-shadow: 0px 0px 40px #F39;
+}
+input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+label {
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  background: #E6A0C4;
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+}
+
+
+.blue label {
+  background: #719BE8;
+}
+
+.blue:hover{
+	box-shadow: 0px 0px 40px #6FF;
+}
+
+.tab-content {
+  max-height: 0;
+  overflow: hidden;
+  background: #F0BCD8;
+  -webkit-transition: max-height .35s;
+  transition: max-height .35s;
+}
+.tab-content ul li{
+	width: 100%;
+	padding: 10px;
+	
+}
+.tab-content ul li:hover{
+	box-shadow: 0px 0px 40px #fff;
+}
+.blue .tab-content {
+  background: #79ADFC;
+}
+
+/* :checked */
+input:checked ~ .tab-content {
+  max-height: 1000px;
+}
+/* Icon */
+label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  transition: all .35s;
+}
+input[type=checkbox] + label::after {
+  content: "+";
+}
+input[type=radio] + label::after {
+  content: "\25BC";
+}
+input[type=checkbox]:checked + label::after {
+  -webkit-transform: rotate(315deg);
+          transform: rotate(315deg);
+		  box-shadow: 0px 0px 40px #F03;
+}
+input[type=radio]:checked + label::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+		  
+}
+</style>
+<body>
+<div class="wrapper">
+    <div class="half">
+    <p>好吃哒</p>
+    <div class="tab">
+      <input id="tab-one" type="checkbox" name="tabs">
+      <label for="tab-one">这个是好吃哒...</label>
+      <div class="tab-content">
+        <ul>
+            <li>墨西哥卷饼</li>
+            <li>梅干菜鲜肉盒子</li>
+            <li>银鱼鸡蛋饼</li>
+            <li>馄饨皮葱油饼</li>
+            <li>韭菜鸡蛋饼</li>
+            <li>葱香小油饼</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab">
+      <input id="tab-two" type="checkbox" name="tabs">
+      <label for="tab-two">这个也是好吃哒....</label>
+      <div class="tab-content">
+        <ul>
+            <li>黄刺鱼豆腐汤</li>
+            <li>嫩滑鱼片汤</li>
+            <li>南瓜粉蒸肉</li>
+            <li>土豆焖排骨</li>
+            <li>海带绿豆排骨汤</li>
+            <li>水煮牛肉</li>
+            
+        </ul>
+      </div>
+    </div>
+    <div class="tab">
+      <input id="tab-three" type="checkbox" name="tabs">
+      <label for="tab-three">这个还是好吃哒....</label>
+      <div class="tab-content">
+        <ul>
+            <li>油焖鲜笋</li>
+            <li>红葱头焗骨</li>
+            <li>五花肉干煸菜花</li>
+            <li>高压锅蒸腐乳小排</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    
+    <div class="half">
+    <p>好喝哒</p>
+    <div class="tab blue">
+      <input id="tab-four" type="radio" name="tabs2">
+      <label for="tab-four">这个是好喝哒...</label>
+      <div class="tab-content">
+        <ul>
+            <li>猕猴桃沙冰</li>
+            <li>红豆冰沙</li>
+            <li>核桃冰淇淋</li>
+            <li>自制草莓冰激凌</li>
+            <li>自制冰淇淋</li>
+            <li>草莓酸奶冰激凌</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab blue">
+      <input id="tab-five" type="radio" name="tabs2">
+      <label for="tab-five">这个也是好喝哒...</label>
+      <div class="tab-content">
+        <ul>
+        	<li>冰镇酸梅汤</li>
+            <li>蜂蜜柠檬茶</li>
+            <li>青桔百香果茶</li>
+            <li>西瓜椰奶西米露</li>
+            <li>薄荷桃子汽水</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab blue">
+      <input id="tab-six" type="radio" name="tabs2">
+      <label for="tab-six">这个还是好喝哒...</label>
+      <div class="tab-content">
+        <ul>
+        	<li>多芒小丸子 </li>
+            <li>杂果白雪捞嘢 </li>
+            <li>芝麻糊配花生糊 </li>
+            <li>芒果西米露</li>
+            <li>明列子水果捞 </li>
+            <li>鲜奶西瓜捞  </li>
+            <li>芒果冰球</li>
+        </ul>
+      </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>
