@@ -1,0 +1,117 @@
+<!docttpe html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PC常用端横向导航</title>
+</head>
+<style>
+body{margin:0;padding:0; font-size:14px; font-family:"SourceHanSansSC-Light","Microsoft Yahei",微软雅黑,"Helvetica Neue",Arial,sans-serif; width:100%; color:#333;}
+html,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p,img{padding:0; margin:0;}
+img{vertical-align:top; border:none;}
+button,select,textarea{outline:none}
+figure,form,fieldset{border:0;margin:0;padding:0}
+textarea{resize:none}
+ul,li{list-style-type:none;}
+textarea:focus,input:focus{outline:none;}
+table{border-collapse:collapse; border-spacing:0; empty-cells:show; }
+a{color:#55585c;text-decoration:none;}
+a:hover{color:#005aa8;text-decoration:none;}
+b,strong{font-weight:normal;}
+cite,em,i{font-style:normal;}
+.c:after {content:"\200B"; display:block; height:0; clear:both;}
+.c{*zoom:1;}
+.fl{float:left;}
+.fr{float:right;}
+.w1000{margin:0 auto; width:1000px;}
+
+/*---父级菜单----*/
+.menu{line-height:50px; background:#999; position:relative; z-index:100;}
+.menu a{display:inline-block; color:#fff; float:left; font-size:15px; padding:0px 16px;}
+.menu ul li.current a,.menu a:hover{background:#666;}
+.menu ul li{float:left;}
+.menu ul li.clickcurrent{background:#333;}
+
+/*---子菜单---*/
+.menu ul li.current{position:relative;}
+.menu ul li.current ul{position:absolute; top:50px; left:0px; width:150px; display:block; background:#003f6f;}
+.menu ul li.current ul li{position:static;} 
+.menu ul li.current ul li a{width:150px; border-bottom:1px solid #ccc; display:block; line-height:47px; font-size:14px; color:#dde2e7;}
+.menu ul li.current ul li a:hover{background:#333;}
+
+</style>
+<script src="http://www.jq22.com/jquery/jquery-2.1.1.js"></script>
+<script>
+	$(function(){
+		//---------主菜单切换效果-----------
+		$("#menuUl>li>a").mousemove(function(){
+			//隐藏显示菜单
+			$(".current").children("ul").hide();
+			$("#menuUl>li").removeClass("current");
+			//显示最新菜单
+			$(this).parent("li").addClass("current");
+			$(this).next("ul").show();
+		});
+		
+		//菜单切换效果
+		$("#menuUl>li>a").click(function(){
+			$("#menuUl>li").removeClass("clickcurrent");
+			$(this).parent("li").addClass("clickcurrent");
+		});
+		
+		//移出隐藏菜单
+		$(document).mousemove(function(e){
+			if(!$(e.target.parentNode).hasClass("current") &&
+				!$(e.target).parent("li").parent().parent().hasClass('current')){
+				$(".current").children("ul").hide();
+				$("#menuUl>li").removeClass("current");
+			}
+		});
+	});
+</script>
+<body>
+<div class="menu">
+    <div class="w1000 c">
+        <ul id="menuUl">
+            <li class="clickcurrent"><a href="javascript:void(0);">首页</a></li>
+            <li>
+                <a href="javascript:void(0);">JAVA</a>
+                <ul style="display:none;">
+                    <li><a href="javascript:void(0);">java软件开发</a></li>
+                    <li><a href="javascript:void(0);">php网页开发</a></li>
+                    <li><a href="javascript:void(0);">网页设计</a></li>
+                    <li><a href="javascript:void(0);">UI设计</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">PHP</a>
+                <ul style="display:none;">
+                    <li><a href="javascript:void(0);">java软件开发</a></li>
+                    <li><a href="javascript:void(0);">php网页开发</a></li>
+                    <li><a href="javascript:void(0);">网页设计</a></li>
+                    <li><a href="javascript:void(0);">UI设计</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">HTML</a>
+                <ul style="display:none;">
+                    <li><a href="javascript:void(0);">java软件开发</a></li>
+                    <li><a href="javascript:void(0);">php网页开发</a></li>
+                    <li><a href="javascript:void(0);">网页设计</a></li>
+                    <li><a href="javascript:void(0);">UI设计</a></li>
+                </ul>
+            </li>
+            <li>
+               <a href="javascript:void(0);">UI</a>
+               <ul style="display:none;">
+                    <li><a href="javascript:void(0);">java软件开发</a></li>
+                    <li><a href="javascript:void(0);">php网页开发</a></li>
+                    <li><a href="javascript:void(0);">网页设计</a></li>
+                    <li><a href="javascript:void(0);">UI设计</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+ </div>
+</div>
+</body>
+</html>
