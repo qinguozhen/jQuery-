@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>图片旋转切换代码</title>
+<style>
+.teachers_banner{width:100%;height:575px;background:url(../images/teachers_banner.jpg) no-repeat center top;background-size:cover;position:relative;overflow:hidden;}
+.teachers_b{position:relative;margin-top:130px;}
+#slide{margin:0 auto;width:760px;height:330px;position:relative;}
+#slide li{position:absolute;width:760px;display:-webkit-box;display:-webkit-flex;display:flex;align-items:flex-start;-webkit-box-align:flex-start;-webkit-align-items:flex-start;background:#fff;overflow:hidden;box-shadow:0px 0px 50px #000;}
+#slide li img{width:100%;height:100%;}
+.arrow .prev,.arrow .next{position:absolute;width:64px;top:38%;z-index:9;font:700 96px 'simsun';opacity:0.3;color:#999;cursor:pointer;}
+.arrow .prev{left:-500px;}
+.arrow .next{right:-500px;}
+.arrow .prev:hover,.arrow .next:hover{color:#000;opacity:.7;}
+</style>
+  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+<div  class="teachers_banner">
+    <div class="container clearfix teachers_b">
+        <div class="slide" id="slide">
+            <ul>
+                <li>
+                	<img src="http://img5.imgtn.bdimg.com/it/u=764589726,4128176499&fm=27&gp=0.jpg" alt="这是图片"> 
+                </li>
+                <li>
+                	<img src="http://img5.imgtn.bdimg.com/it/u=463982137,1737236536&fm=27&gp=0.jpg" alt="这是图片"> 
+                </li>
+                <li>
+                	<img src="http://img4.imgtn.bdimg.com/it/u=2725319088,1643751200&fm=27&gp=0.jpg" alt="这是图片"> 
+                </li>
+                <li>
+                	<img src="http://img0.imgtn.bdimg.com/it/u=5051244,3664524996&fm=27&gp=0.jpg" alt="这是图片"> 
+                </li>
+                <li>
+                	<img src="http://img0.imgtn.bdimg.com/it/u=3040139092,3657109362&fm=27&gp=0.jpg" alt="这是图片">
+                </li>
+                <li>
+                	<img src="http://img1.imgtn.bdimg.com/it/u=2855632259,2607669774&fm=27&gp=0.jpg" alt="这是图片">  
+                </li>
+            </ul>
+            <div class="arrow">
+                <div class="prev"><</div>
+                <div class="next">></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        /*图片位置数据*/
+        var placedata = [
+            {'z-index': 6, opacity: 1, width: 760, height: 330, top: 40, left: 0},
+            {'z-index': 4, opacity: 0.6, width: 560, height: 243, top:80, left: -225},
+            {'z-index': 3, opacity: 0.4, width: 480, height: 203, top: -10, left: -170},
+            {'z-index': 2, opacity: 0.2, width: 620, height: 269, top: -60, left: 110},
+            {'z-index': 3, opacity: 0.4, width: 480, height: 203,  top: -10, left: 430},
+            {'z-index': 4, opacity: 0.6, width: 560, height: 243, top: 80, left: 420},
+        ];
+        move();
+		
+        function move() {
+            /*图片分布*/
+            for (var i = 0; i < placedata.length; i++) {
+                var data = placedata[i];
+                $('#slide ul li').eq(i).css('z-index',data['z-index']);
+                $('#slide ul li').eq(i).stop().animate(data, 1200);
+            }
+        }
+
+        /*左箭头事件*/
+        $('.prev').on('click', function () {
+            var last = placedata.pop();
+            placedata.unshift(last);
+            move();
+        })
+
+        /*右箭头事件处理函数*/
+        function nextYewu(){
+            var first = placedata.shift();
+            placedata.push(first);
+            move();
+        }
+		
+        /*右箭头事件*/
+        $('.next').on('click', nextYewu);
+		
+		/*键盘左右控制*/
+		$(window).keydown(function(ev){
+			var ev = ev || event;
+			//左
+			if(ev.keyCode == 39){
+				var last = placedata.pop();
+				placedata.unshift(last);
+				move();
+			}
+			//右
+			else if(ev.keyCode == 37){
+				var first = placedata.shift();
+				placedata.push(first);
+				move();
+			}
+		});
+
+        /*自动播放*/
+        var timer = setInterval(function(){
+            nextYewu();
+        },3000);
+		
+        /*鼠标进入slide显示箭头,清除自动播放*/
+        $('#slide').on({
+            mouseenter: function () {
+                $('.arrow').css('display', 'block');
+                clearInterval(timer);
+            }, mouseleave: function () {
+                $('.arrow').css('display', 'block');
+                /*鼠标离开时自动播放*/
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    nextYewu();
+                },3000)
+            }
+        })
+    })
+</script>
+</div>
+</body>
+</html>
