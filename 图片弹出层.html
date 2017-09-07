@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>图片弹出层</title>
+<style>
+body { margin: 0px; padding: 0px; }
+.amin { background: #ccc; width: 1200px; min-height: 100px; margin: 0 auto; padding: 50px; text-align: center; }
+.img { display: inline-block; margin: 10px; }
+.img img { width: 200px; height: 200px; }
+.cover { position: absolute; display: none; width: 100%; height: 100%; left: 0px; top: 0px; }
+.cover span { position: absolute; background: #000; display: inline-block; height: 100%; width: 100%; opacity: 0.4; }
+.cont { z-index: 9999; display: inline-block; position: relative; left: 50%; top: 50%; transform: translate(-50%, -50%) }
+.cont img { width: 600px; height: 600px; }
+.exit { float: right; cursor: pointer; font-weight: bold; position: absolute; right: 0px; font-size: 40px; margin-right: 10px; color: #666; }
+.exit:hover { color: #000; }
+.next { float: left; font-size: 40px; margin-top: 50%; }
+.last { float: right; font-size: 40px; margin-top: 50%; }
+</style>
+<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+	<div class="cover">
+    	<span></span>
+        <b class="exit">×</b>
+        <div class="cont">
+            <img src="img/1.jpg">     
+        </div>
+    </div>
+    <div class="amin">
+    	<div class="img">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1669158391,872664803&fm=27&gp=0.jpg"></div>
+        <div class="img">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=200987110,409871336&fm=27&gp=0.jpg"></div>
+        <div class="img">
+        <img src="http://img0.imgtn.bdimg.com/it/u=5051244,3664524996&fm=27&gp=0.jpg"></div>
+        <div class="img">
+        <img src="http://img3.imgtn.bdimg.com/it/u=252794254,2727110729&fm=27&gp=0.jpg"></div>
+    </div>
+<script>
+	$(function(){
+		$(".img").click(function(){
+			$(".cover").show(500);
+			$(".cont img").attr("src", $(this).find("img").attr("src"));
+		});
+		$(".exit").click(function(){
+			$(this).parent().hide(1000);
+		});
+	});
+</script>
+</body>
+</html>
